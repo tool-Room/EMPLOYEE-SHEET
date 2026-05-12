@@ -1,8 +1,7 @@
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial;
   background:#F5F5F5;
-  color:#333;
 }
 
 /* LOADING */
@@ -25,18 +24,18 @@ body{
 
 .loading-title{
   color:#0000FF;
-  margin-top:20px;
-  font-size:32px;
+  font-size:34px;
   font-weight:bold;
+  margin-top:20px;
 }
 
 .loader{
-  margin-top:20px;
   width:70px;
   height:70px;
   border:6px solid #ddd;
   border-top:6px solid #0000FF;
   border-radius:50%;
+  margin-top:20px;
   animation:spin 1s linear infinite;
 }
 
@@ -72,26 +71,45 @@ header{
   width:120px;
 }
 
-.header-info{
+.header-left h1{
+  color:#0000FF;
   margin-left:20px;
 }
 
-.header-info h1{
-  color:#0000FF;
-  margin:0;
+.header-right{
+  text-align:right;
 }
 
-.header-info p{
+.leader-text,
+.leader-mail{
+  font-size:13px;
   margin:3px 0;
 }
 
-/* LOGIN */
-
 #loginBtn{
+  margin-top:10px;
   background:#0000FF;
   color:white;
   border:none;
-  padding:12px 20px;
+  padding:10px 20px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* NAVBAR */
+
+#navbar{
+  background:white;
+  padding:10px;
+  text-align:center;
+}
+
+#navbar button{
+  background:#0000FF;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  margin:0 10px;
   border-radius:6px;
   cursor:pointer;
 }
@@ -106,8 +124,6 @@ header{
 .search-container input{
   width:350px;
   padding:14px;
-  border:1px solid #ccc;
-  border-radius:6px;
 }
 
 .search-container button{
@@ -115,30 +131,15 @@ header{
   background:#0000FF;
   color:white;
   border:none;
-  border-radius:6px;
-  margin-left:10px;
-  cursor:pointer;
 }
 
-/* FILTER */
-
-.filter-container{
-  text-align:center;
-  margin-top:20px;
-}
-
-.filter-container select{
-  padding:10px;
-}
-
-/* DEPARTMENT */
+/* DEPARTMENTS */
 
 .department-container{
   display:flex;
   justify-content:center;
   gap:30px;
   margin-top:50px;
-  flex-wrap:wrap;
 }
 
 .card{
@@ -154,11 +155,6 @@ header{
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,0.1);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
 }
 
 /* RESULTS */
@@ -168,48 +164,66 @@ header{
   margin:50px auto;
 }
 
-/* PROJECT CARD */
-
 .project-card{
   background:white;
   padding:25px;
   border-radius:10px;
-  margin-bottom:25px;
+  margin-bottom:20px;
   box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
-.project-card h2{
-  color:#0000FF;
-}
+/* MODAL */
 
-/* PROGRESS */
-
-.progress-section{
-  margin-top:15px;
-}
-
-.progress-bar{
+.modal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0;
+  top:0;
   width:100%;
-  height:22px;
-  background:#ddd;
-  border-radius:20px;
-  overflow:hidden;
+  height:100%;
+  background:rgba(0,0,0,0.5);
 }
 
-.progress-fill{
-  height:100%;
+.modal-content{
+  background:white;
+  width:400px;
+  margin:8% auto;
+  padding:30px;
+  border-radius:10px;
+}
+
+.modal-content input,
+.modal-content textarea{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+}
+
+.modal-content button{
+  margin-top:15px;
   background:#0000FF;
-  text-align:center;
   color:white;
-  line-height:22px;
+  border:none;
+  padding:12px 20px;
+}
+
+.close{
+  float:right;
+  font-size:28px;
+  cursor:pointer;
 }
 
 /* FOOTER */
 
 footer{
-  background:white;
   text-align:center;
   padding:20px;
+  background:white;
   margin-top:50px;
-  box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+  font-size:13px;
+}
+
+.footer-small{
+  margin-top:5px;
 }
