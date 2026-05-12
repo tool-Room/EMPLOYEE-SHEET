@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxNOLsZNwrIKWKAT10k15zmHjc3NeaFSgh6892v_yGfvdPwsfQnyyge0dzwTohB-jB11Q/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz0sF1Wz-bOTteVvLaAox19C-B7A41WRqhKmjlZPpbVAMJAJhbxBWCxFmUv7pjEu9i5Ow/exec";
 
 let database = {};
 
