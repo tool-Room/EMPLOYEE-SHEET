@@ -7,9 +7,9 @@ let isLoggedIn = false;
 
 // LOAD
 
-window.onload = async function(){
+window.onload = function(){
 
-  await loadData();
+  // SHOW MAIN PAGE AFTER 2.5 SEC
 
   setTimeout(()=>{
 
@@ -23,21 +23,35 @@ window.onload = async function(){
 
   },2500);
 
-};
+  // LOAD DATABASE SEPARATELY
 
+  loadData();
+
+};
 // LOAD DATABASE
 
 async function loadData(){
 
-  const response =
-    await fetch(
-      API_URL + "?action=getData"
-    );
+  try{
 
-  database =
-    await response.json();
+    const response =
+      await fetch(
+        API_URL + "?action=getData"
+      );
+
+    database =
+      await response.json();
+
+    console.log(database);
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
 }
-
 // SEARCH
 
 function searchData(){
