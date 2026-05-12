@@ -8,7 +8,7 @@
   </title>
 
   <link rel="stylesheet"
-        href="style.css">
+        href="style.css?v=5">
 
 </head>
 
@@ -16,23 +16,24 @@
 
   <!-- LOADING -->
 
-<div id="loading-screen">
+  <div id="loading-screen">
 
-  <img src="logo.png"
-       class="logo">
+    <img src="logo.png"
+         class="logo">
 
-  <div class="loading-title">
-    TOOL ROOM ACTIVITIES
+    <div class="loading-title">
+      TOOL ROOM ACTIVITIES
+    </div>
+
+    <p>
+      Project Monitoring &
+      Employee Tracking System
+    </p>
+
+    <div class="loader"></div>
+
   </div>
 
-  <p>
-    Project Monitoring &
-    Employee Tracking System
-  </p>
-
-  <div class="loader"></div>
-
-</div>
   <!-- MAIN -->
 
   <div id="main-content">
@@ -40,6 +41,8 @@
     <!-- HEADER -->
 
     <header>
+
+      <!-- LEFT -->
 
       <div class="header-left">
 
@@ -52,24 +55,49 @@
             TOOL ROOM ACTIVITY SHEET
           </h1>
 
-          <p>
-            Leader :
-            Nagaraja Kamble
-          </p>
-
-          <p>
-            nkamble@forbesmarshall.com
-          </p>
-
         </div>
 
       </div>
 
-      <button id="loginBtn">
-        LOGIN
-      </button>
+      <!-- RIGHT -->
+
+      <div class="header-right">
+
+        <p class="leader-text">
+          Leader:
+          Nagaraja Kamble
+        </p>
+
+        <p class="leader-mail">
+          nkamble@forbesmarshall.com
+        </p>
+
+        <button id="loginBtn">
+          LOGIN
+        </button>
+
+      </div>
 
     </header>
+
+    <!-- NAVBAR -->
+
+    <div id="navbar"
+         style="display:none;">
+
+      <button onclick="openProjectModal()">
+        Add Project
+      </button>
+
+      <button onclick="openUserModal()">
+        Manage Users
+      </button>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+
+    </div>
 
     <!-- SEARCH -->
 
@@ -83,28 +111,6 @@
       <button onclick="searchData()">
         Search
       </button>
-
-    </div>
-
-    <!-- FILTER -->
-
-    <div class="filter-container">
-
-      <select id="statusFilter">
-
-        <option value="">
-          All Status
-        </option>
-
-        <option value="Completed">
-          Completed
-        </option>
-
-        <option value="In Progress">
-          In Progress
-        </option>
-
-      </select>
 
     </div>
 
@@ -139,34 +145,75 @@
 
     <div id="results"></div>
 
-    <!-- ADMIN PANEL -->
+    <!-- PROJECT MODAL -->
 
-    <div id="adminPanel"
-         style="display:none;">
+    <div id="projectModal"
+         class="modal">
 
-      <h2>
-        ADD PROJECT
-      </h2>
+      <div class="modal-content">
 
-      <input
-        id="projectName"
-        placeholder="Project Name">
+        <span class="close"
+              onclick="closeProjectModal()">
 
-      <input
-        id="projectLeader"
-        placeholder="Project Leader">
+          ×
 
-      <input
-        id="startDate"
-        type="date">
+        </span>
 
-      <input
-        id="expectedEndDate"
-        type="date">
+        <h2>Add Project</h2>
 
-      <button onclick="addProject()">
-        Add Project
-      </button>
+        <input id="projectName"
+               placeholder="Project Name">
+
+        <input id="projectLeader"
+               placeholder="Project Leader">
+
+        <input id="startDate"
+               type="date">
+
+        <input id="expectedEndDate"
+               type="date">
+
+        <input id="budget"
+               placeholder="Budget">
+
+        <textarea id="remarks"
+                  placeholder="Remarks"></textarea>
+
+        <button onclick="addProject()">
+          Save Project
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- USER MODAL -->
+
+    <div id="userModal"
+         class="modal">
+
+      <div class="modal-content">
+
+        <span class="close"
+              onclick="closeUserModal()">
+
+          ×
+
+        </span>
+
+        <h2>Add Login User</h2>
+
+        <input id="newUserEmail"
+               placeholder="Email">
+
+        <input id="newUserRole"
+               placeholder="Role">
+
+        <button onclick="addUser()">
+          Add User
+        </button>
+
+      </div>
 
     </div>
 
@@ -174,21 +221,19 @@
 
     <footer>
 
-      © 2026 Forbes Marshall
+      <div>
+        © 2026 Forbes Marshall — All Rights Reserved
+      </div>
 
-      <br>
-
-      All Rights Reserved
-
-      <br>
-
-      Designed By Tool Room
+      <div class="footer-small">
+        Designed By Tool Room
+      </div>
 
     </footer>
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=5"></script>
 
 </body>
 
