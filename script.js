@@ -1,4 +1,4 @@
-const API_URL = "YOUR_APPS_SCRIPT_WEBAPP_URL";
+const API_URL = "https://script.google.com/macros/s/AKfycbxNOLsZNwrIKWKAT10k15zmHjc3NeaFSgh6892v_yGfvdPwsfQnyyge0dzwTohB-jB11Q/exec";
 
 let database = {};
 
