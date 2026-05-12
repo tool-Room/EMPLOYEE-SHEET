@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Tool Room Activity Sheet</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+
+  <div id="loading-screen">
+
+    <img
+      src="logo.png"
+      class="logo">
+
+    <h1>TOOL ROOM ACTIVITIES</h1>
+
+    <p>
+      Project Monitoring &
+      Employee Tracking System
+    </p>
+
+    <div class="loader"></div>
+
+  </div>
+
+  <!-- MAIN CONTENT -->
+
+  <div id="main-content">
+
+    <!-- HEADER -->
+
+    <header>
+
+      <div class="header-left">
+
+        <img src="logo.png"
+             class="header-logo">
+
+        <h2>
+          TOOL ROOM ACTIVITY SHEET
+        </h2>
+
+      </div>
+
+    </header>
+
+    <!-- SEARCH -->
+
+    <div class="search-container">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Employee / Project">
+
+      <button onclick="searchData()">
+        Search
+      </button>
+
+    </div>
+
+    <!-- DEPARTMENT CARDS -->
+
+    <div class="department-container">
+
+      <div class="card"
+           onclick="showDepartment('Designing')">
+
+        DESIGNING
+
+      </div>
+
+      <div class="card"
+           onclick="showDepartment('Manufacturing')">
+
+        MANUFACTURING
+
+      </div>
+
+      <div class="card"
+           onclick="showDepartment('Automation')">
+
+        AUTOMATION
+
+      </div>
+
+    </div>
+
+    <!-- SEARCH RESULTS -->
+
+    <div id="searchResults"></div>
+
+    <!-- DEPARTMENT RESULTS -->
+
+    <div id="departmentData"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
