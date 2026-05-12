@@ -3,11 +3,9 @@ const API_URL =
 
 let database = {};
 
-let isLoggedIn = false;
-
-// LOAD
-
 window.onload = async function(){
+
+  await loadData();
 
   setTimeout(()=>{
 
@@ -19,9 +17,7 @@ window.onload = async function(){
       "main-content"
     ).style.display = "block";
 
-  },2000);
-
-  await loadData();
+  },2500);
 
   // AUTO REFRESH
 
@@ -32,13 +28,25 @@ window.onload = async function(){
 
 async function loadData(){
 
-  const response =
-    await fetch(
-      API_URL + "?action=getData"
-    );
+  try{
 
-  database =
-    await response.json();
+    const response =
+      await fetch(
+        API_URL + "?action=getData"
+      );
+
+    database =
+      await response.json();
+
+    console.log(database);
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
 }
 
 // SEARCH
@@ -49,21 +57,26 @@ function searchData(){
     document
     .getElementById("searchInput")
     .value
-    .toLowerCase();
+    .toLowerCase()
+    .trim();
 
   let html = "";
 
+  if(!database.projects){
+    return;
+  }
+
   database.projects.forEach((row,index)=>{
 
-    if(index==0) return;
+    if(index === 0) return;
 
-    if(
-      row[1]
-      .toLowerCase()
-      .includes(value)
-    ){
+    const projectName =
+      String(row[1]).toLowerCase();
+
+    if(projectName.includes(value)){
 
       html += createProjectCard(row);
+
     }
 
   });
@@ -87,19 +100,19 @@ function showDepartment(dept){
 
   database.projects.forEach((row,index)=>{
 
-    if(index==0) return;
+    if(index === 0) return;
+
+    const overallStatus = row[6];
+
+    if(filter && overallStatus != filter){
+      return;
+    }
 
     // DESIGNING
 
     if(
-      dept=="Designing" &&
-      row[7]
+      dept == "Designing"
     ){
-
-      if(filter &&
-         row[6] != filter){
-        return;
-      }
 
       html += createProjectCard(row);
     }
@@ -107,14 +120,8 @@ function showDepartment(dept){
     // AUTOMATION
 
     if(
-      dept=="Automation" &&
-      row[9]
+      dept == "Automation"
     ){
-
-      if(filter &&
-         row[6] != filter){
-        return;
-      }
 
       html += createProjectCard(row);
     }
@@ -122,14 +129,8 @@ function showDepartment(dept){
     // MANUFACTURING
 
     if(
-      dept=="Manufacturing" &&
-      row[11]
+      dept == "Manufacturing"
     ){
-
-      if(filter &&
-         row[6] != filter){
-        return;
-      }
 
       html += createProjectCard(row);
     }
@@ -141,7 +142,7 @@ function showDepartment(dept){
     .innerHTML = html;
 }
 
-// PROJECT CARD
+// CREATE PROJECT CARD
 
 function createProjectCard(row){
 
@@ -152,32 +153,32 @@ function createProjectCard(row){
       <h2>${row[1]}</h2>
 
       <p>
-        Leader:
+        <b>Leader:</b>
         ${row[2]}
       </p>
 
       <p>
-        Start:
+        <b>Start Date:</b>
         ${row[3]}
       </p>
 
       <p>
-        Expected End:
+        <b>Expected End:</b>
         ${row[4]}
       </p>
 
       <p>
-        Overall Status:
+        <b>Status:</b>
         ${row[6]}
       </p>
 
       <!-- DESIGN -->
 
-      <div class="progress-container">
+      <div class="progress-section">
 
         <p>
-          Designing:
-          ${row[8]}%
+          Designing
+          (${row[8]}%)
         </p>
 
         <div class="progress-bar">
@@ -195,11 +196,11 @@ function createProjectCard(row){
 
       <!-- AUTOMATION -->
 
-      <div class="progress-container">
+      <div class="progress-section">
 
         <p>
-          Automation:
-          ${row[10]}%
+          Automation
+          (${row[10]}%)
         </p>
 
         <div class="progress-bar">
@@ -217,11 +218,11 @@ function createProjectCard(row){
 
       <!-- MANUFACTURING -->
 
-      <div class="progress-container">
+      <div class="progress-section">
 
         <p>
-          Manufacturing:
-          ${row[12]}%
+          Manufacturing
+          (${row[12]}%)
         </p>
 
         <div class="progress-bar">
@@ -237,34 +238,15 @@ function createProjectCard(row){
 
       </div>
 
-      <!-- DETAILS -->
-
       <p>
-        Budget:
-        ${row[22]}
-      </p>
-
-      <p>
-        Current Stage:
+        <b>Current Stage:</b>
         ${row[23]}
       </p>
 
       <p>
-        Remarks:
+        <b>Remarks:</b>
         ${row[25]}
       </p>
-
-      <!-- TIMELINE -->
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-
-          ✔ ${row[24]}
-
-        </div>
-
-      </div>
 
     </div>
   `;
@@ -288,16 +270,13 @@ document
       )
     ){
 
-      isLoggedIn = true;
-
-      alert("Login Success");
+      alert("Login Successful");
 
       document
         .getElementById(
           "adminPanel"
         )
         .style.display = "block";
-
     }
 
     else{
@@ -306,100 +285,3 @@ document
     }
 
   });
-
-// ADD PROJECT
-
-async function addProject(){
-
-  const data = {
-
-    action:"addProject",
-
-    projectID:
-      "P" + Date.now(),
-
-    projectName:
-      document
-      .getElementById(
-        "projectName"
-      ).value,
-
-    projectLeader:
-      document
-      .getElementById(
-        "projectLeader"
-      ).value,
-
-    startDate:
-      document
-      .getElementById(
-        "startDate"
-      ).value,
-
-    expectedEndDate:
-      document
-      .getElementById(
-        "expectedEndDate"
-      ).value,
-
-    actualEndDate:"",
-
-    overallStatus:
-      "In Progress",
-
-    designStatus:
-      "Started",
-
-    designProgress:0,
-
-    automationStatus:
-      "Pending",
-
-    automationProgress:0,
-
-    manufacturingStatus:
-      "Pending",
-
-    manufacturingProgress:0,
-
-    designType:"Inhouse",
-
-    designVendorName:"",
-
-    designVendorContact:"",
-
-    automationType:"Inhouse",
-
-    automationVendorName:"",
-
-    automationVendorContact:"",
-
-    manufacturingType:"Inhouse",
-
-    manufacturingVendorName:"",
-
-    manufacturingVendorContact:"",
-
-    budget:"",
-
-    currentStage:
-      "Project Started",
-
-    completedStages:
-      "Project Created",
-
-    remarks:""
-  };
-
-  await fetch(API_URL,{
-
-    method:"POST",
-
-    body:JSON.stringify(data)
-
-  });
-
-  alert("Project Added");
-
-  loadData();
-}
