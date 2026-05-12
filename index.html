@@ -3,34 +3,33 @@
 
 <head>
 
-  <title>Tool Room Activity Sheet</title>
+  <title>
+    Tool Room Activity Sheet
+  </title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+        href="style.css">
 
 </head>
 
 <body>
 
-  <!-- LOADING SCREEN -->
+  <!-- LOADING -->
 
   <div id="loading-screen">
 
-    <img
-      src="logo.png"
-      class="logo">
+    <img src="logo.png"
+         class="logo">
 
-    <h1>TOOL ROOM ACTIVITIES</h1>
-
-    <p>
-      Project Monitoring &
-      Employee Tracking System
-    </p>
+    <h1>
+      TOOL ROOM ACTIVITIES
+    </h1>
 
     <div class="loader"></div>
 
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
 
   <div id="main-content">
 
@@ -43,11 +42,28 @@
         <img src="logo.png"
              class="header-logo">
 
-        <h2>
-          TOOL ROOM ACTIVITY SHEET
-        </h2>
+        <div>
+
+          <h1>
+            TOOL ROOM ACTIVITY SHEET
+          </h1>
+
+          <p>
+            Leader :
+            Nagaraja Kamble
+          </p>
+
+          <p>
+            nkamble@forbesmarshall.com
+          </p>
+
+        </div>
 
       </div>
+
+      <button id="loginBtn">
+        LOGIN
+      </button>
 
     </header>
 
@@ -58,7 +74,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="Search Employee / Project">
+        placeholder="Search Project">
 
       <button onclick="searchData()">
         Search
@@ -66,7 +82,29 @@
 
     </div>
 
-    <!-- DEPARTMENT CARDS -->
+    <!-- FILTER -->
+
+    <div class="filter-container">
+
+      <select id="statusFilter">
+
+        <option value="">
+          All Status
+        </option>
+
+        <option value="Completed">
+          Completed
+        </option>
+
+        <option value="In Progress">
+          In Progress
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- DEPARTMENTS -->
 
     <div class="department-container">
 
@@ -78,28 +116,71 @@
       </div>
 
       <div class="card"
-           onclick="showDepartment('Manufacturing')">
-
-        MANUFACTURING
-
-      </div>
-
-      <div class="card"
            onclick="showDepartment('Automation')">
 
         AUTOMATION
 
       </div>
 
+      <div class="card"
+           onclick="showDepartment('Manufacturing')">
+
+        MANUFACTURING
+
+      </div>
+
     </div>
 
-    <!-- SEARCH RESULTS -->
+    <!-- RESULTS -->
 
-    <div id="searchResults"></div>
+    <div id="results"></div>
 
-    <!-- DEPARTMENT RESULTS -->
+    <!-- ADMIN PANEL -->
 
-    <div id="departmentData"></div>
+    <div id="adminPanel"
+         style="display:none;">
+
+      <h2>
+        ADD PROJECT
+      </h2>
+
+      <input
+        id="projectName"
+        placeholder="Project Name">
+
+      <input
+        id="projectLeader"
+        placeholder="Project Leader">
+
+      <input
+        id="startDate"
+        type="date">
+
+      <input
+        id="expectedEndDate"
+        type="date">
+
+      <button onclick="addProject()">
+        Add Project
+      </button>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+      © 2026 Forbes Marshall
+
+      <br>
+
+      All Rights Reserved
+
+      <br>
+
+      Designed By Tool Room
+
+    </footer>
 
   </div>
 
