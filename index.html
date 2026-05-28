@@ -1,178 +1,128 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+  <meta charset="UTF-8">
   <title>Tool Room Activity Sheet</title>
-
-  <link rel="stylesheet"
-        href="style.css?v=1">
-
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
-
 <body>
 
-<!-- LOADING -->
-
 <div id="loading-screen">
-
-  <img src="logo.png"
-       class="logo">
-
-  <div class="loading-title">
-    TOOL ROOM ACTIVITIES
-  </div>
-
-  <div class="loading-subtitle">
-    Project Monitoring & Employee Tracking System
-  </div>
-
+  <img src="logo.png" class="logo" alt="Logo">
+  <div class="loading-title">TOOL ROOM ACTIVITIES</div>
+  <div class="loading-subtitle">Project Monitoring & Employee Tracking System</div>
   <div class="loader"></div>
-
 </div>
-
-<!-- MAIN -->
 
 <div id="main-content">
 
-  <!-- HEADER -->
-
   <header>
-
     <div class="header-left">
-
-      <img src="logo.png"
-           class="header-logo">
-
-      <h1>
-        TOOL ROOM ACTIVITY SHEET
-      </h1>
-
+      <div class="brand-logo-container">
+        <span class="brand-logo-text">TOOL ROOM</span>
+      </div>
+      <h1>TOOL ROOM ACTIVITY SHEET</h1>
     </div>
-
+    
     <div class="header-right">
-
-      <p>
-        Leader: Nagaraja Kamble
-      </p>
-
-      <p>
-        nkamble@forbesmarshall.com
-      </p>
-
-      <button id="loginBtn">
-        LOGIN
-      </button>
-
+      <div class="profile-pill">
+        <div class="profile-info">
+          <span class="user-name"><strong>Leader:</strong> Nagaraja Kamble</span>
+          <span class="user-email">nkamble@forbesmarshall.com</span>
+        </div>
+      </div>
+      <button id="loginBtn">LOGIN</button>
     </div>
-
   </header>
 
-  <!-- DASHBOARD -->
+  <div class="search-section">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Project...">
+      <button onclick="searchProject()">Search</button>
+    </div>
+  </div>
 
-  <div class="dashboard">
+  <div class="dashboard-counters">
+    <div class="counter-card">
+      <span class="counter-label">TOTAL PROJECTS</span>
+      <span class="counter-value" id="toolCount">0</span>
+    </div>
+    <div class="counter-card">
+      <span class="counter-label">ONGOING</span>
+      <span class="counter-value" id="ongoingCount">0</span>
+    </div>
+    <div class="counter-card">
+      <span class="counter-label">COMPLETED</span>
+      <span class="counter-value" id="completedCount">0</span>
+    </div>
+  </div>
 
-    <div class="dash-card">
-
-      <h2 id="toolCount">
-        0
-      </h2>
-
-      <p>
-        Total Projects
-      </p>
-
+  <div class="departments-container">
+    
+    <div class="dept-card card-designing" onclick="showProjects()">
+      <div class="card-accent-glow"></div>
+      <div class="card-graphic">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 20h60v60H20z" stroke-dasharray="3 3" opacity="0.3"/>
+          <circle cx="50" cy="50" r="25" stroke-dasharray="2 2" opacity="0.4"/>
+          <path d="M25 35 l45 45 M30 30 l45 45" stroke-width="2"/>
+          <path d="M22 28 l8 8 M32 38 l6-6 M40 46 l6-6" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="card-details">
+        <h2>DESIGNING</h2>
+        <p class="caption">"An idea is just a thought until design gives it form. Let see designs."</p>
+      </div>
     </div>
 
-    <div class="dash-card">
-
-      <h2 id="ongoingCount">
-        0
-      </h2>
-
-      <p>
-        Ongoing
-      </p>
-
+    <div class="dept-card card-automation" onclick="showProjects()">
+      <div class="card-accent-glow"></div>
+      <div class="card-graphic">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 80 h30 M25 80 v-15 l15-20 l20 5 l10-15" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="70" cy="35" r="4" fill="currentColor"/>
+          <path d="M70 40 v15 h15 M55 55 h10 v20" opacity="0.6"/>
+          <circle cx="85" cy="55" r="2"/>
+          <circle cx="65" cy="75" r="2"/>
+        </svg>
+      </div>
+      <div class="card-details">
+        <h2>AUTOMATION</h2>
+        <p class="caption">"If electricity turns on the machine, automation gives it a purpose. brain? or heart? but life!"</p>
+      </div>
     </div>
 
-    <div class="dash-card">
-
-      <h2 id="completedCount">
-        0
-      </h2>
-
-      <p>
-        Completed
-      </p>
-
+    <div class="dept-card card-manufacturing" onclick="showProjects()">
+      <div class="card-accent-glow"></div>
+      <div class="card-graphic">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="40" cy="40" r="12" stroke-width="2"/>
+          <circle cx="40" cy="40" r="4"/>
+          <path d="M40 24 v4 M40 52 v4 M24 40 h4 M52 40 h4" stroke-width="2"/>
+          <circle cx="65" cy="60" r="10" stroke-width="2"/>
+          <path d="M20 80 h60 v6 H20z" fill="currentColor" opacity="0.2"/>
+          <circle cx="30" cy="83" r="2" fill="currentColor"/>
+          <circle cx="50" cy="83" r="2" fill="currentColor"/>
+          <circle cx="70" cy="83" r="2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="card-details">
+        <h2>MANUFACTURING</h2>
+        <p class="caption">Pixels make the promise, production delivers the proof. What vision are you bringing to life?.</p>
+      </div>
     </div>
 
   </div>
-
-  <!-- SEARCH -->
-
-  <div class="search-box">
-
-    <input type="text"
-           id="searchInput"
-           placeholder="Search Project">
-
-    <button onclick="searchProject()">
-      Search
-    </button>
-
-  </div>
-
-  <!-- DEPARTMENTS -->
-
-  <div class="departments">
-
-    <div class="dept-card"
-         onclick="showProjects()">
-
-      DESIGNING
-
-    </div>
-
-    <div class="dept-card"
-         onclick="showProjects()">
-
-      AUTOMATION
-
-    </div>
-
-    <div class="dept-card"
-         onclick="showProjects()">
-
-      MANUFACTURING
-
-    </div>
-
-  </div>
-
-  <!-- RESULTS -->
 
   <div id="results"></div>
 
-  <!-- FOOTER -->
-
   <footer>
-
-    <div>
-      © 2026 Forbes Marshall — All Rights Reserved
-    </div>
-
-    <div class="footer-small">
-      Designed By Tool Room
-    </div>
-
+    <div class="footer-copyright">© 2026 Forbes Marshall — All Rights Reserved</div>
+    <div class="footer-signature">Designed By Tool Room</div>
   </footer>
 
 </div>
 
-<script src="script.js?v=1"></script>
-
+<script src="script.js?v=2"></script>
 </body>
-
 </html>
