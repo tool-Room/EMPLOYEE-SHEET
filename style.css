@@ -1,0 +1,285 @@
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#EEF2F5;
+  overflow-x:hidden;
+}
+
+/* LOADING */
+
+#loading-screen{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#ECECEC;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.logo{
+  width:340px;
+}
+
+.loading-title{
+  color:#0000FF;
+  margin-top:25px;
+  font-size:36px;
+  font-weight:bold;
+}
+
+.loading-subtitle{
+  margin-top:10px;
+  font-size:16px;
+  color:#333;
+}
+
+.loader{
+  width:75px;
+  height:75px;
+  margin-top:40px;
+  border:6px solid #D3D3D3;
+  border-top:6px solid #0000FF;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+  100%{
+    transform:rotate(360deg);
+  }
+
+}
+
+/* MAIN */
+
+#main-content{
+  display:none;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(to right,#9FB7CC,#D7E1EA,#9FB7CC);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+}
+
+.header-logo{
+  width:220px;
+}
+
+.header-left h1{
+  margin-left:25px;
+  font-size:42px;
+  color:#111;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.leader-card{
+  background:white;
+  padding:15px 20px;
+  border-radius:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.leader-card p{
+  margin:5px 0;
+}
+
+#loginBtn{
+  background:linear-gradient(to bottom,#0E6AC9,#003E8A);
+  color:white;
+  border:none;
+  padding:18px 34px;
+  border-radius:14px;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* SEARCH */
+
+.search-container{
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+}
+
+.search-box{
+  background:#D5E2EA;
+  padding:12px;
+  border-radius:40px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.search-box input{
+  width:420px;
+  padding:18px;
+  border:none;
+  border-radius:30px;
+  font-size:22px;
+}
+
+.search-box button{
+  background:linear-gradient(to bottom,#0E6AC9,#003E8A);
+  color:white;
+  border:none;
+  padding:16px 28px;
+  border-radius:30px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.dashboard-cards{
+  width:90%;
+  margin:35px auto;
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  flex-wrap:wrap;
+}
+
+.dash-card{
+  background:linear-gradient(to right,#8FD4DC,#A5E4EA);
+  width:320px;
+  height:90px;
+  border-radius:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 25px;
+  font-size:28px;
+  font-weight:bold;
+  color:white;
+  border:3px solid #5E8E99;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.dash-card h2{
+  font-size:60px;
+  margin:0;
+}
+
+/* DEPARTMENTS */
+
+.department-section{
+  width:90%;
+  margin:40px auto;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.department-card{
+  width:380px;
+  background:linear-gradient(to bottom right,#0B4A91,#1E8CA8);
+  border-radius:24px;
+  padding:25px;
+  color:white;
+  box-shadow:0 8px 18px rgba(0,0,0,0.2);
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.department-card:hover{
+  transform:translateY(-8px);
+}
+
+.dept-image{
+  width:100%;
+  height:220px;
+  object-fit:contain;
+}
+
+.department-card h2{
+  font-size:54px;
+  margin-top:15px;
+  margin-bottom:10px;
+}
+
+.department-card p{
+  font-size:24px;
+  line-height:1.5;
+}
+
+/* RESULTS */
+
+#results{
+  width:90%;
+  margin:40px auto;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:50px;
+  background:linear-gradient(to right,#C8D3DC,#E7EDF2,#C8D3DC);
+  text-align:center;
+  padding:20px;
+  font-size:20px;
+}
+
+.footer-small{
+  margin-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  header{
+    flex-direction:column;
+  }
+
+  .header-left{
+    flex-direction:column;
+  }
+
+  .header-left h1{
+    margin-left:0;
+    text-align:center;
+    font-size:28px;
+  }
+
+  .search-box input{
+    width:220px;
+  }
+
+  .dashboard-cards{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .department-section{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .department-card{
+    width:90%;
+  }
+
+}
