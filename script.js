@@ -1,19 +1,19 @@
 // script.js
 
-// DUMMY COUNTS
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Dummy project data
+  // DUMMY DATA
 
-  let totalProjects = 18;
-  let ongoingProjects = 7;
-  let completedProjects = 11;
+  const totalProjects = 24;
+  const ongoingProjects = 8;
+  const completedProjects = 16;
 
-  // Display data
+  // SET VALUES
 
   document.getElementById("totalProjects").innerText = totalProjects;
+
   document.getElementById("ongoingProjects").innerText = ongoingProjects;
+
   document.getElementById("completedProjects").innerText = completedProjects;
 
 });
@@ -21,38 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // SEARCH BUTTON
 
-document.getElementById("searchBtn").addEventListener("click", () => {
+document.getElementById("searchBtn")
+.addEventListener("click", () => {
 
-  let searchValue = document
-    .getElementById("searchInput")
-    .value;
+  let searchText =
+    document.getElementById("searchInput").value;
 
-  if(searchValue === ""){
+  if(searchText === ""){
+
     alert("Please enter project name");
+
   }
   else{
-    alert("Searching for : " + searchValue);
+
+    alert("Searching for : " + searchText);
+
   }
-
-});
-
-
-// MODULE BUTTONS
-
-const moduleButtons = document.querySelectorAll(".module-btn");
-
-moduleButtons.forEach((button) => {
-
-  button.addEventListener("click", () => {
-
-    let moduleName = button
-      .parentElement
-      .querySelector("h2")
-      .innerText;
-
-    alert(moduleName + " Module Opening...");
-
-  });
 
 });
 
@@ -62,30 +46,23 @@ moduleButtons.forEach((button) => {
 document.querySelector(".login-btn")
 .addEventListener("click", () => {
 
-  alert("Login Page Coming Soon");
+  alert("Login System Coming Soon");
 
 });
 
 
-// HOVER SOUND EFFECT STYLE
+// MODULE CARDS
 
-const cards = document.querySelectorAll(
-  ".module-card, .status-card"
-);
+const cards = document.querySelectorAll(".module-card");
 
 cards.forEach((card) => {
 
-  card.addEventListener("mouseenter", () => {
+  card.addEventListener("click", () => {
 
-    card.style.boxShadow =
-      "0 20px 40px rgba(0,0,0,0.35)";
+    const title =
+      card.querySelector(".module-title").innerText;
 
-  });
-
-  card.addEventListener("mouseleave", () => {
-
-    card.style.boxShadow =
-      "0 15px 35px rgba(0,0,0,0.2)";
+    alert(title + " Module Opening");
 
   });
 
