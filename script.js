@@ -157,4 +157,65 @@ function createProjectCard(row) {
 // SECURE USER ACCESS GATEWAY LINK
 document.getElementById("loginBtn").addEventListener("click", () => {
   alert("Login System Coming Next");
-});
+});function createProjectCard(row){
+
+  return `
+
+    <div class="project-card">
+
+      <h2>
+        ${row[2]}
+      </h2>
+
+      <p>
+
+        <b>Tool Number:</b>
+
+        ${row[0]}
+
+      </p>
+
+      <p>
+
+        <b>Project ID:</b>
+
+        ${row[1]}
+
+      </p>
+
+      <p>
+
+        <b>Leader:</b>
+
+        ${row[3]}
+
+      </p>
+
+      <p>
+
+        <b>Year:</b>
+
+        ${row[4]}
+
+      </p>
+
+      <p>
+
+        <b>Status:</b>
+
+        ${row[8]}
+
+      </p>
+
+      <p>
+
+        <b>Current Stage:</b>
+
+        ${row[26]}
+
+      </p>
+
+    </div>
+
+  `;
+}
