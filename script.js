@@ -44,27 +44,88 @@ function updateDashboard() {
 }
 
 // DATA SEARCH PIPELINE
-function searchProject() {
-  if (!database.projects) return;
+function searchProject(){
 
-  const value = document.getElementById("searchInput").value.toLowerCase().trim();
-  let html = "";
-
-  database.projects.forEach((row, index) => {
-    if (index === 0) return;
-    const projectName = String(row[1]).toLowerCase();
-    if (projectName.includes(value)) {
-      html += createProjectCard(row);
-    }
-  });
-
-  if (html === "") {
-    html = `<div class="project-card"><h2>No Projects Found</h2></div>`;
+  if(!database.projects){
+    return;
   }
 
-  document.getElementById("results").innerHTML = html;
-}
+  const value =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
 
+  let html = "";
+
+  database.projects.forEach((row,index)=>{
+
+    if(index == 0) return;
+
+    const toolNumber =
+      String(row[0]).toLowerCase();
+
+    const projectID =
+      String(row[1]).toLowerCase();
+
+    const projectName =
+      String(row[2]).toLowerCase();
+
+    const leader =
+      String(row[3]).toLowerCase();
+
+    // SEARCH MATCH
+
+    if(
+
+      toolNumber.includes(value) ||
+
+      projectID.includes(value) ||
+
+      projectName.includes(value) ||
+
+      leader.includes(value)
+
+    ){
+
+      html += createProjectCard(row);
+
+    }
+
+  });
+
+  if(html == ""){
+
+    html = `
+
+      <div class="project-card">
+
+        <h2>
+          No Matching Projects Found
+        </h2>
+
+      </div>
+
+    `;
+
+  }
+
+  document
+    .getElementById("results")
+    .innerHTML = html;
+
+  // AUTO SCROLL TO RESULTS
+
+  document
+    .getElementById("search-page")
+    .scrollIntoView({
+
+      behavior:"smooth"
+
+    });
+
+}
 // INLINE FILTER ELEMENT BUILDER
 function showProjects() {
   if (!database.projects) return;
