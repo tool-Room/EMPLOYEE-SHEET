@@ -3,23 +3,35 @@ const API_URL =
 
 let database = {};
 
+// PAGE LOAD
+
 window.onload = function(){
 
-  // SHOW MAIN PAGE
+  // SHOW MAIN CONTENT
 
   setTimeout(()=>{
 
-    document.getElementById(
-      "loading-screen"
-    ).style.display = "none";
+    const loading =
+      document.getElementById(
+        "loading-screen"
+      );
 
-    document.getElementById(
-      "main-content"
-    ).style.display = "block";
+    const main =
+      document.getElementById(
+        "main-content"
+      );
+
+    if(loading){
+      loading.style.display = "none";
+    }
+
+    if(main){
+      main.style.display = "block";
+    }
 
   },2500);
 
-  // LOAD DATABASE
+  // LOAD DATA
 
   loadData();
 
@@ -47,13 +59,16 @@ async function loadData(){
 
   catch(error){
 
-    console.log(error);
+    console.log(
+      "Database Error",
+      error
+    );
 
   }
 
 }
 
-// UPDATE DASHBOARD
+// DASHBOARD UPDATE
 
 function updateDashboard(){
 
@@ -73,40 +88,51 @@ function updateDashboard(){
 
     total++;
 
-    // STATUS COLUMN
-
     const status =
-      String(row[8]);
+      String(row[8] || "");
 
     if(status == "In Progress"){
-
       ongoing++;
-
     }
 
     if(status == "Completed"){
-
       completed++;
-
     }
 
   });
 
-  document
-    .getElementById("toolCount")
-    .innerText = total;
+  // SAFE UPDATE
 
-  document
-    .getElementById("ongoingCount")
-    .innerText = ongoing;
+  const tool =
+    document.getElementById(
+      "toolCount"
+    );
 
-  document
-    .getElementById("completedCount")
-    .innerText = completed;
+  const ongoingEl =
+    document.getElementById(
+      "ongoingCount"
+    );
+
+  const completedEl =
+    document.getElementById(
+      "completedCount"
+    );
+
+  if(tool){
+    tool.innerText = total;
+  }
+
+  if(ongoingEl){
+    ongoingEl.innerText = ongoing;
+  }
+
+  if(completedEl){
+    completedEl.innerText = completed;
+  }
 
 }
 
-// SEARCH SYSTEM
+// SEARCH PROJECT
 
 function searchProject(){
 
@@ -114,10 +140,17 @@ function searchProject(){
     return;
   }
 
+  const input =
+    document.getElementById(
+      "searchInput"
+    );
+
+  if(!input){
+    return;
+  }
+
   const value =
-    document
-    .getElementById("searchInput")
-    .value
+    input.value
     .toLowerCase()
     .trim();
 
@@ -127,21 +160,21 @@ function searchProject(){
 
     if(index == 0) return;
 
-    // COLUMN REFERENCES
-
     const toolNumber =
-      String(row[0]).toLowerCase();
+      String(row[0] || "")
+      .toLowerCase();
 
     const projectID =
-      String(row[1]).toLowerCase();
+      String(row[1] || "")
+      .toLowerCase();
 
     const projectName =
-      String(row[2]).toLowerCase();
+      String(row[2] || "")
+      .toLowerCase();
 
     const leader =
-      String(row[3]).toLowerCase();
-
-    // SEARCH MATCH
+      String(row[3] || "")
+      .toLowerCase();
 
     if(
 
@@ -161,8 +194,6 @@ function searchProject(){
 
   });
 
-  // NO RESULT
-
   if(html == ""){
 
     html = `
@@ -179,23 +210,26 @@ function searchProject(){
 
   }
 
-  document
-    .getElementById("results")
-    .innerHTML = html;
+  const results =
+    document.getElementById(
+      "results"
+    );
 
-  // SCROLL TO RESULTS
+  if(results){
 
-  document
-    .getElementById("results")
-    .scrollIntoView({
+    results.innerHTML = html;
+
+    results.scrollIntoView({
 
       behavior:"smooth"
 
     });
 
+  }
+
 }
 
-// SHOW ALL PROJECTS
+// SHOW PROJECTS
 
 function showProjects(){
 
@@ -213,138 +247,50 @@ function showProjects(){
 
   });
 
-  document
-    .getElementById("results")
-    .innerHTML = html;
+  const results =
+    document.getElementById(
+      "results"
+    );
+
+  if(results){
+
+    results.innerHTML = html;
+
+  }
 
 }
 
-// CREATE PROJECT CARD
+// PROJECT CARD
 
 function createProjectCard(row){
 
   return `
 
-    <div class="project-card"
-         onclick="openProjectDetails('${row[1]}')">
+    <div class="project-card">
 
       <h2>
-        ${row[2]}
+        ${row[2] || ""}
       </h2>
 
       <p>
-
         <b>Tool Number:</b>
-
-        ${row[0]}
-
+        ${row[0] || ""}
       </p>
 
       <p>
-
         <b>Project ID:</b>
-
-        ${row[1]}
-
+        ${row[1] || ""}
       </p>
 
       <p>
-
         <b>Leader:</b>
-
-        ${row[3]}
-
+        ${row[3] || ""}
       </p>
 
       <p>
-
-        <b>Year:</b>
-
-        ${row[4]}
-
-      </p>
-
-      <p>
-
         <b>Status:</b>
-
-        ${row[8]}
-
+        ${row[8] || ""}
       </p>
-
-      <p>
-
-        <b>Current Stage:</b>
-
-        ${row[26]}
-
-      </p>
-
-      <!-- DESIGN -->
-
-      <div class="progress-section">
-
-        <p>
-          Designing
-          (${row[10]}%)
-        </p>
-
-        <div class="progress-bar">
-
-          <div class="progress-fill"
-               style="width:${row[10]}%">
-
-            ${row[10]}%
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- AUTOMATION -->
-
-      <div class="progress-section">
-
-        <p>
-          Automation
-          (${row[12]}%)
-        </p>
-
-        <div class="progress-bar">
-
-          <div class="progress-fill"
-               style="width:${row[12]}%">
-
-            ${row[12]}%
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- MANUFACTURING -->
-
-      <div class="progress-section">
-
-        <p>
-          Manufacturing
-          (${row[14]}%)
-        </p>
-
-        <div class="progress-bar">
-
-          <div class="progress-fill"
-               style="width:${row[14]}%">
-
-            ${row[14]}%
-
-          </div>
-
-        </div>
-
-      </div>
 
     </div>
 
@@ -352,155 +298,24 @@ function createProjectCard(row){
 
 }
 
-// PROJECT DETAILS
-
-function openProjectDetails(projectID){
-
-  let html = "";
-
-  database.projects.forEach((row,index)=>{
-
-    if(index == 0) return;
-
-    if(row[1] == projectID){
-
-      html = `
-
-        <div class="project-card">
-
-          <h2>${row[2]}</h2>
-
-          <p>
-
-            <b>Tool Number:</b>
-
-            ${row[0]}
-
-          </p>
-
-          <p>
-
-            <b>Leader:</b>
-
-            ${row[3]}
-
-          </p>
-
-          <p>
-
-            <b>Status:</b>
-
-            ${row[8]}
-
-          </p>
-
-          <p>
-
-            <b>Current Stage:</b>
-
-            ${row[26]}
-
-          </p>
-
-          <p>
-
-            <b>Remarks:</b>
-
-            ${row[28]}
-
-          </p>
-
-          <hr>
-
-          <h3>
-            Project Documents
-          </h3>
-
-          <p>
-
-            <a href="${row[29]}"
-               target="_blank">
-
-              Material Status
-
-            </a>
-
-          </p>
-
-          <p>
-
-            <a href="${row[30]}"
-               target="_blank">
-
-              Electrical Drawings
-
-            </a>
-
-          </p>
-
-          <p>
-
-            <a href="${row[31]}"
-               target="_blank">
-
-              Operation Manuals
-
-            </a>
-
-          </p>
-
-          <p>
-
-            <a href="${row[32]}"
-               target="_blank">
-
-              P&ID Drawings
-
-            </a>
-
-          </p>
-
-          <p>
-
-            <a href="${row[33]}"
-               target="_blank">
-
-              Other Documents
-
-            </a>
-
-          </p>
-
-        </div>
-
-      `;
-
-    }
-
-  });
-
-  document
-    .getElementById("results")
-    .innerHTML = html;
-
-  document
-    .getElementById("results")
-    .scrollIntoView({
-
-      behavior:"smooth"
-
-    });
-
-}
-
 // LOGIN
 
-document
-.getElementById("loginBtn")
-.addEventListener("click",()=>{
-
-  alert(
-    "Login System Will Be Added Next"
+const loginBtn =
+  document.getElementById(
+    "loginBtn"
   );
 
-});
+if(loginBtn){
+
+  loginBtn.addEventListener(
+    "click",
+    ()=>{
+
+      alert(
+        "Login System Coming Next"
+      );
+
+    }
+  );
+
+}
