@@ -1,52 +1,92 @@
-<script>
-  // Execute metrics update automatically when UI finishes loading
-  window.addEventListener('DOMContentLoaded', () => {
-    updateDashboardMetrics();
+// script.js
+
+// DUMMY COUNTS
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Dummy project data
+
+  let totalProjects = 18;
+  let ongoingProjects = 7;
+  let completedProjects = 11;
+
+  // Display data
+
+  document.getElementById("totalProjects").innerText = totalProjects;
+  document.getElementById("ongoingProjects").innerText = ongoingProjects;
+  document.getElementById("completedProjects").innerText = completedProjects;
+
+});
+
+
+// SEARCH BUTTON
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+
+  let searchValue = document
+    .getElementById("searchInput")
+    .value;
+
+  if(searchValue === ""){
+    alert("Please enter project name");
+  }
+  else{
+    alert("Searching for : " + searchValue);
+  }
+
+});
+
+
+// MODULE BUTTONS
+
+const moduleButtons = document.querySelectorAll(".module-btn");
+
+moduleButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    let moduleName = button
+      .parentElement
+      .querySelector("h2")
+      .innerText;
+
+    alert(moduleName + " Module Opening...");
+
   });
 
-  /**
-   * Asynchronously polls Google Sheets backend for latest live metrics
-   */
-  function updateDashboardMetrics() {
-    if (typeof google !== "undefined" && google.script) {
-      google.script.run
-        .withSuccessHandler(function(stats) {
-          document.getElementById('count-total').innerText = stats.total;
-          document.getElementById('count-ongoing').innerText = stats.ongoing;
-          document.getElementById('count-completed').innerText = stats.completed;
-        })
-        .withFailureHandler(function(err) {
-          console.error("Failed to read database metrics: ", err);
-        })
-        .getDashboardStats();
-    }
-  }
+});
 
-  /**
-   * Dummy function placeholder for card navigation
-   */
-  function navigateTo(moduleName) {
-    alert("🚀 Navigating to Module: " + moduleName.toUpperCase() + "\nThis placeholder is ready to launch sub-forms or layout switches!");
-    // Later integration example:
-    // google.script.run.loadModulePage(moduleName);
-  }
 
-  /**
-   * Dummy function placeholder for Search bar functionality
-   */
-  function executeSearch() {
-    const query = document.getElementById('projectSearch').value;
-    if(!query) {
-      alert("Please enter a project ID or Keyword first!");
-      return;
-    }
-    alert("🔍 Searching Database for query: '" + query + "'");
-  }
+// LOGIN BUTTON
 
-  /**
-   * Dummy login button placeholder action
-   */
-  function handleLogin() {
-    alert("🔑 User authentication logic trigger standard placeholder.");
-  }
-</script>
+document.querySelector(".login-btn")
+.addEventListener("click", () => {
+
+  alert("Login Page Coming Soon");
+
+});
+
+
+// HOVER SOUND EFFECT STYLE
+
+const cards = document.querySelectorAll(
+  ".module-card, .status-card"
+);
+
+cards.forEach((card) => {
+
+  card.addEventListener("mouseenter", () => {
+
+    card.style.boxShadow =
+      "0 20px 40px rgba(0,0,0,0.35)";
+
+  });
+
+  card.addEventListener("mouseleave", () => {
+
+    card.style.boxShadow =
+      "0 15px 35px rgba(0,0,0,0.2)";
+
+  });
+
+});
