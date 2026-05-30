@@ -1,96 +1,163 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
-    <?!= include('Styles'); ?>
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tool Room Activity Sheet</title>
 
-    <header class="app-header">
-      <div class="header-left">
-        <div class="logo-placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <h1>TOOL ROOM <span class="sub-title">ACTIVITY SHEET</span></h1>
-      </div>
-      
-      <div class="header-right">
-        <div class="leader-card">
-          <div class="leader-info">
-            <p class="leader-label">👤 Leader: <strong>Nagaraja Kamble</strong></p>
-            <p class="leader-email">✉ nkamble@forbesmarshall.com</p>
-          </div>
-        </div>
-        <button class="btn btn-login" onclick="handleLogin()">LOGIN</button>
-      </div>
-    </header>
+  <link rel="stylesheet" href="style.css" />
 
-    <main class="dashboard-container">
-      
-      <div class="search-section">
-        <div class="search-box">
-          <input type="text" id="projectSearch" placeholder="Search Project...">
-          <button class="btn btn-search" onclick="executeSearch()">Search</button>
-        </div>
-      </div>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <span class="metric-label">TOTAL PROJECTS</span>
-          <div class="metric-value-box" id="count-total">0</div>
+<body>
+
+  <!-- HEADER -->
+  <header class="top-header">
+
+    <div class="logo-section">
+      <div class="logo-icon">⚙</div>
+      <div class="title-section">
+        <h1>TOOL ROOM ACTIVITY SHEET</h1>
+      </div>
+    </div>
+
+    <div class="header-right">
+
+      <div class="leader-card">
+        <div class="leader-name">
+          <span>👤 Leader:</span>
+          <strong>Nagaraja Kamble</strong>
         </div>
-        <div class="metric-card">
-          <span class="metric-label">ONGOING</span>
-          <div class="metric-value-box" id="count-ongoing">0</div>
-        </div>
-        <div class="metric-card">
-          <span class="metric-label">COMPLETED</span>
-          <div class="metric-value-box" id="count-completed">0</div>
+
+        <div class="leader-mail">
+          ✉ nkamble@forbesmarshall.com
         </div>
       </div>
 
-      <div class="cards-grid">
-        
-        <div class="action-card card-designing" onclick="navigateTo('designing')">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 3H3v18h18V3zM3 16.5L16.5 3M3 9h18M9 3v18"/>
-            </svg>
-          </div>
-          <h2>DESIGNING</h2>
-          <p>Explore and manage design projects, schematics, and visualizations.</p>
+      <button class="login-btn">LOGIN</button>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-container">
+
+    <!-- SEARCH -->
+    <div class="search-container">
+
+      <input type="text" id="searchInput" placeholder="Search Project">
+
+      <button id="searchBtn">
+        Search
+      </button>
+
+    </div>
+
+    <!-- PROJECT STATUS -->
+    <div class="status-grid">
+
+      <div class="status-card">
+        <div class="status-title">TOTAL PROJECTS</div>
+        <div class="status-number" id="totalProjects">0</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-title">ONGOING</div>
+        <div class="status-number" id="ongoingProjects">0</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-title">COMPLETED</div>
+        <div class="status-number" id="completedProjects">0</div>
+      </div>
+
+    </div>
+
+    <!-- MODULE CARDS -->
+    <div class="module-grid">
+
+      <!-- DESIGN -->
+      <div class="module-card design-card">
+
+        <div class="module-image">
+          📐
         </div>
 
-        <div class="action-card card-automation" onclick="navigateTo('automation')">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2v4M12 18v4M4 12H2M22 12h-2M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/>
-            </svg>
-          </div>
-          <h2>AUTOMATION</h2>
-          <p>Develop, monitor, and configure automated control systems and production logic.</p>
-        </div>
+        <h2>DESIGNING</h2>
 
-        <div class="action-card card-manufacturing" onclick="navigateTo('manufacturing')">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-            </svg>
-          </div>
-          <h2>MANUFACTURING</h2>
-          <p>Plan production schedules, track fabrication status, and manage assembly workflows.</p>
-        </div>
+        <p>
+          Explore and manage design projects,
+          schematics, and visualizations.
+        </p>
+
+        <button class="module-btn">
+          Open Module
+        </button>
 
       </div>
-    </main>
 
-    <footer class="app-footer">
-      <p>© 2026 Forbes Marshall — All Rights Reserved</p>
-      <p class="designer-tag">Designed By Tool Room</p>
-    </footer>
+      <!-- AUTOMATION -->
+      <div class="module-card automation-card">
 
-    <?!= include('JavaScript'); ?>
-  </body>
+        <div class="module-image">
+          🤖
+        </div>
+
+        <h2>AUTOMATION</h2>
+
+        <p>
+          Develop, monitor, and configure automated
+          control systems and production logic.
+        </p>
+
+        <button class="module-btn">
+          Open Module
+        </button>
+
+      </div>
+
+      <!-- MANUFACTURING -->
+      <div class="module-card manufacturing-card">
+
+        <div class="module-image">
+          ⚙️
+        </div>
+
+        <h2>MANUFACTURING</h2>
+
+        <p>
+          Plan production schedules, track fabrication
+          status, and manage assembly workflows.
+        </p>
+
+        <button class="module-btn">
+          Open Module
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <p>
+      © 2026 Forbes Marshall — All Rights Reserved
+    </p>
+
+    <p>
+      Designed By Tool Room
+    </p>
+
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
 </html>
