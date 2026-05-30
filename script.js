@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbyL6HxmrZeRUORAuShXV1ViJakWvId4SawEukSWASqfxx3OOYyRh7OnC5eRi5sco8go3g/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyZFLgDfKMiTaz0hdEy8vm0-KTkU4tTlLdYXcxQWIxyb82MQEWaWmLLL5Hn9a17FKniCA/exec";
 let database = {};
 
 // PAGE INITIALIZATION DELAY
