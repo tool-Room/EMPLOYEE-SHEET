@@ -69,6 +69,17 @@ header {
   align-items: center;
   gap: 20px;
 }
+/* SEARCH PAGE */
+
+#search-page{
+  width:90%;
+  margin:50px auto;
+}
+
+.result-title{
+  color:#0000FF;
+  margin-bottom:30px;
+}
 .brand-logo-container {
   background: #1e3a5f;
   padding: 8px 15px;
