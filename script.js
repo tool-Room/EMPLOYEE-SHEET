@@ -1,5 +1,5 @@
 const API_URL =
-"YOUR_APPS_SCRIPT_URL";
+"https://script.google.com/macros/s/AKfycbwHoa5IIGWsrQh2UG0qlxuNtQ6dJF6c0BhdS59NUL2G2Fnqaq-nGIyzp1N-W4LNMNDFgw/exec";
 
 let database = {};
 
