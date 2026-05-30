@@ -1,6 +1,6 @@
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -8,9 +8,21 @@
 
   <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
   <title>
     Tool Room Activity Sheet
   </title>
+
+  <!-- GOOGLE FONT -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- STYLE FILE -->
 
   <?!= include('style'); ?>
 
@@ -18,21 +30,24 @@
 
 <body>
 
+<!-- ===================================================== -->
 <!-- LOADING SCREEN -->
+<!-- ===================================================== -->
 
 <div id="loading-screen">
 
-  <div class="loading-container">
+  <div class="loading-wrapper">
 
     <img
       src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png"
+      alt="Tool Room Logo"
       class="logo">
 
-    <h1>
+    <h1 class="loading-title">
       TOOL ROOM ACTIVITIES
     </h1>
 
-    <p>
+    <p class="loading-subtitle">
       Project Monitoring & Employee Tracking System
     </p>
 
@@ -42,181 +57,323 @@
 
 </div>
 
-<!-- MAIN PAGE -->
+<!-- ===================================================== -->
+<!-- MAIN APPLICATION -->
+<!-- ===================================================== -->
 
 <div id="main-content">
 
-<header>
+  <!-- ===================================================== -->
+  <!-- HEADER -->
+  <!-- ===================================================== -->
 
-  <div class="header-left">
+  <header>
 
-    <div class="brand-box">
-      TOOL ROOM
-    </div>
+    <!-- LEFT SIDE -->
 
-    <h1>
-      TOOL ROOM ACTIVITY SHEET
-    </h1>
+    <div class="header-left">
 
-  </div>
+      <div class="brand-container">
 
-  <div class="header-right">
+        <div class="brand-logo">
+          TOOL ROOM
+        </div>
 
-    <div class="profile-box">
-
-      <div>
-        <strong>
-          Leader:
-        </strong>
-
-        Nagaraja Kamble
       </div>
 
-      <small>
-        nkamble@forbesmarshall.com
-      </small>
+      <div class="title-section">
+
+        <h1>
+          TOOL ROOM ACTIVITY SHEET
+        </h1>
+
+      </div>
 
     </div>
 
-    <button id="loginBtn">
-      LOGIN
-    </button>
+    <!-- RIGHT SIDE -->
 
-  </div>
+    <div class="header-right">
 
-</header>
+      <div class="profile-pill">
 
-<!-- SEARCH -->
+        <div class="profile-info">
 
-<div class="search-section">
+          <span class="leader-name">
 
-  <div class="search-box">
+            <strong>
+              Leader:
+            </strong>
 
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search Employee / Project / Tool Number">
+            Nagaraja Kamble
 
-    <button onclick="searchProject()">
-      Search
-    </button>
+          </span>
 
-  </div>
+          <span class="leader-email">
+
+            nkamble@forbesmarshall.com
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <button id="loginBtn">
+
+        LOGIN
+
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- ===================================================== -->
+  <!-- SEARCH SECTION -->
+  <!-- ===================================================== -->
+
+  <section class="search-section">
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Employee / Project / Tool Number">
+
+      <button onclick="searchProject()">
+
+        Search
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- DASHBOARD COUNTERS -->
+  <!-- ===================================================== -->
+
+  <section class="dashboard-counters">
+
+    <!-- TOTAL -->
+
+    <div class="counter-card">
+
+      <div class="counter-label">
+        TOTAL PROJECTS
+      </div>
+
+      <div
+        class="counter-value"
+        id="toolCount">
+
+        0
+
+      </div>
+
+    </div>
+
+    <!-- ONGOING -->
+
+    <div class="counter-card">
+
+      <div class="counter-label">
+        ONGOING
+      </div>
+
+      <div
+        class="counter-value"
+        id="ongoingCount">
+
+        0
+
+      </div>
+
+    </div>
+
+    <!-- COMPLETED -->
+
+    <div class="counter-card">
+
+      <div class="counter-label">
+        COMPLETED
+      </div>
+
+      <div
+        class="counter-value"
+        id="completedCount">
+
+        0
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- DEPARTMENT SECTION -->
+  <!-- ===================================================== -->
+
+  <section class="departments-container">
+
+    <!-- ===================================================== -->
+    <!-- DESIGNING -->
+    <!-- ===================================================== -->
+
+    <div
+      class="dept-card designing-card"
+      onclick="showDepartment('Designing')">
+
+      <div class="card-overlay"></div>
+
+      <div class="card-content">
+
+        <div class="card-icon">
+
+          ⚙️
+
+        </div>
+
+        <h2>
+          DESIGNING
+        </h2>
+
+        <p>
+
+          Explore and manage design projects,
+          schematics and engineering concepts.
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- AUTOMATION -->
+    <!-- ===================================================== -->
+
+    <div
+      class="dept-card automation-card"
+      onclick="showDepartment('Automation')">
+
+      <div class="card-overlay"></div>
+
+      <div class="card-content">
+
+        <div class="card-icon">
+
+          🤖
+
+        </div>
+
+        <h2>
+          AUTOMATION
+        </h2>
+
+        <p>
+
+          Develop, monitor and configure
+          automation systems and PLC logic.
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- MANUFACTURING -->
+    <!-- ===================================================== -->
+
+    <div
+      class="dept-card manufacturing-card"
+      onclick="showDepartment('Manufacturing')">
+
+      <div class="card-overlay"></div>
+
+      <div class="card-content">
+
+        <div class="card-icon">
+
+          🏭
+
+        </div>
+
+        <h2>
+          MANUFACTURING
+        </h2>
+
+        <p>
+
+          Track production schedules,
+          fabrication progress and assembly.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- SEARCH RESULTS -->
+  <!-- ===================================================== -->
+
+  <section id="search-page">
+
+    <div class="results-header">
+
+      <h2 class="result-title">
+
+        SEARCH RESULTS
+
+      </h2>
+
+    </div>
+
+    <div id="results">
+
+      <!-- DYNAMIC RESULTS -->
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- FOOTER -->
+  <!-- ===================================================== -->
+
+  <footer>
+
+    <div class="footer-main">
+
+      © 2026 Forbes Marshall — All Rights Reserved
+
+    </div>
+
+    <div class="footer-sub">
+
+      Designed By Tool Room
+
+    </div>
+
+  </footer>
 
 </div>
 
-<!-- COUNTERS -->
-
-<div class="dashboard-counters">
-
-  <div class="counter-card">
-
-    <span>
-      TOTAL PROJECTS
-    </span>
-
-    <h2 id="toolCount">
-      0
-    </h2>
-
-  </div>
-
-  <div class="counter-card">
-
-    <span>
-      ONGOING
-    </span>
-
-    <h2 id="ongoingCount">
-      0
-    </h2>
-
-  </div>
-
-  <div class="counter-card">
-
-    <span>
-      COMPLETED
-    </span>
-
-    <h2 id="completedCount">
-      0
-    </h2>
-
-  </div>
-
-</div>
-
-<!-- DEPARTMENT CARDS -->
-
-<div class="departments-container">
-
-  <div class="dept-card designing">
-
-    <div class="overlay"></div>
-
-    <h2>
-      DESIGNING
-    </h2>
-
-    <p>
-      Explore and manage design projects.
-    </p>
-
-  </div>
-
-  <div class="dept-card automation">
-
-    <div class="overlay"></div>
-
-    <h2>
-      AUTOMATION
-    </h2>
-
-    <p>
-      Develop and monitor automation systems.
-    </p>
-
-  </div>
-
-  <div class="dept-card manufacturing">
-
-    <div class="overlay"></div>
-
-    <h2>
-      MANUFACTURING
-    </h2>
-
-    <p>
-      Plan and track manufacturing workflow.
-    </p>
-
-  </div>
-
-</div>
-
-<!-- SEARCH RESULTS -->
-
-<div id="search-page">
-
-  <h2 class="result-title">
-    SEARCH RESULTS
-  </h2>
-
-  <div id="results"></div>
-
-</div>
-
-<footer>
-
-  © 2026 Forbes Marshall — All Rights Reserved
-
-</footer>
-
-</div>
+<!-- ===================================================== -->
+<!-- SCRIPT -->
+<!-- ===================================================== -->
 
 <?!= include('script'); ?>
 
 </body>
+
 </html>
 ```
