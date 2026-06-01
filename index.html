@@ -1,203 +1,154 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Room Activity Sheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #dce5eb;
+            --header-bg: linear-gradient(180deg, #b0c4de, #9bb0cb);
+            --card-design: linear-gradient(135deg, #0d3b66, #051c33);
+            --card-auto: linear-gradient(135deg, #006666, #003333);
+            --card-mfg: linear-gradient(135deg, #4a5768, #2b3541);
+            --text-light: #ffffff;
+            --text-dark: #222b35;
+        }
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
 
-  <title>Tool Room Activity Sheet</title>
+        /* Header Style */
+        header {
+            background: var(--header-bg);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #8ba1b9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .logo-area h1 { font-size: 1.5rem; letter-spacing: 1px; color: #1e3a5f; text-shadow: 1px 1px #fff; }
+        .user-panel { display: flex; align-items: center; gap: 20px; }
+        .leader-card { background: rgba(255,255,255,0.7); padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; border: 1px solid #fff; }
+        .login-btn { background: linear-gradient(#1e5799, #154075); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
-  <link rel="stylesheet" href="style.css">
+        /* Main Workspace Layout */
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; padding: 30px 20px; flex: 1; }
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+        /* Search Section */
+        .search-section { display: flex; justify-content: center; margin-bottom: 30px; gap: 10px; }
+        .search-bar { width: 50%; padding: 12px 20px; border-radius: 25px; border: 1px solid #b0c4de; outline: none; font-size: 1rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+        .search-btn { background: linear-gradient(#1e5799, #154075); color: white; border: none; padding: 0 25px; border-radius: 25px; cursor: pointer; font-weight: 600; }
 
+        /* Stats Blocks Row */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .stat-box { display: flex; justify-content: space-between; align-items: center; background: #96b3c6; padding: 12px 20px; border-radius: 10px; border: 2px solid #b5cbd8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .stat-label { font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2); letter-spacing: 0.5px; }
+        .stat-value { background: rgba(255,255,255,0.9); padding: 5px 20px; border-radius: 6px; font-size: 1.5rem; font-weight: 700; color: #154075; border: 1px solid #7ea1ba; }
+
+        /* Grid for Interactive Navigation Cards */
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .card { border-radius: 20px; padding: 30px; color: var(--text-light); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 10px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
+        
+        .card.designing { background: var(--card-design); }
+        .card.automation { background: var(--card-auto); }
+        .card.manufacturing { background: var(--card-mfg); }
+
+        .card-icon { width: 80px; height: 80px; margin-bottom: 20px; fill: currentColor; opacity: 0.9; }
+        .card h2 { font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+        .card p { font-size: 0.9rem; line-height: 1.5; opacity: 0.85; font-weight: 300; }
+
+        /* Footer */
+        footer { text-align: center; padding: 20px; font-size: 0.8rem; opacity: 0.7; border-top: 1px solid #b5cbd8; margin-top: auto; }
+    </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <h1>⚙️ TOOL ROOM ACTIVITY SHEET</h1>
+        </div>
+        <div class="user-panel">
+            <div class="leader-card">
+                <strong>Leader:</strong> Nagaraja Kamble<br>
+                <span>nkamble@forbesmarshall.com</span>
+            </div>
+            <button class="login-btn">LOGIN</button>
+        </div>
+    </header>
 
-  <header class="top-header">
+    <div class="container">
+        <div class="search-section">
+            <input type="text" class="search-bar" placeholder="Search Project...">
+            <button class="search-btn">Search</button>
+        </div>
 
-    <div class="logo-area">
+        <div class="stats-row">
+            <div class="stat-box">
+                <span class="stat-label">TOTAL PROJECTS</span>
+                <span class="stat-value" id="total-count">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">ONGOING</span>
+                <span class="stat-value" id="ongoing-count">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">COMPLETED</span>
+                <span class="stat-value" id="completed-count">0</span>
+            </div>
+        </div>
 
-      <div class="logo-icon">
-        ⚙
-      </div>
-
-      <div class="header-title">
-        TOOL ROOM ACTIVITY SHEET
-      </div>
-
+        <div class="cards-grid">
+            <div class="card designing" onclick="navigateTo('designing')">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M17 16.99l-5.04-5.04-1.41 1.41 5.04 5.04-1.42 1.42L12 17.59l-5.61 5.61-1.41-1.41 5.61-5.61-2.18-2.18 5.61-5.61 1.41 1.41-5.04 5.04 1.41 1.41 5.04-5.04 1.42 1.42zM12 2L2 7l10 5 10-5-10-5z"/></svg>
+                <h2>Designing</h2>
+                <p>Explore and manage design projects, schematics, and visualizations.</p>
+            </div>
+            <div class="card automation" onclick="navigateTo('automation')">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M22 9V7h-2V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2zm-4 10H4V5h14v14zM6 13h5v4H6zm6-6h4v3h-4z"/></svg>
+                <h2>Automation</h2>
+                <p>Develop, monitor, and configure automated control systems and production logic.</p>
+            </div>
+            <div class="card manufacturing" onclick="navigateTo('manufacturing')">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M22 22H2V2h20v20zM6 18h3v-4H6v4zm5 0h3V9h-3v9zm5 0h3v-7h-3v7z"/></svg>
+                <h2>Manufacturing</h2>
+                <p>Plan production schedules, track fabrication status, and manage assembly workflows.</p>
+            </div>
+        </div>
     </div>
 
-    <div class="right-header">
+    <footer>
+        © 2026 Forbes Marshall — All Rights Reserved. Designed By Tool Room
+    </footer>
 
-      <div class="leader-box">
+    <script>
+        // Paste your Apps Script Web App URL here once deployed
+        const API_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
 
-        <div class="leader-row">
-          👤
-          <span>Leader:</span>
-          <strong>Nagaraja Kamble</strong>
-        </div>
+        async function fetchDashboardStats() {
+            if(API_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") return;
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                document.getElementById('total-count').innerText = data.total || 0;
+                document.getElementById('ongoing-count').innerText = data.ongoing || 0;
+                document.getElementById('completed-count').innerText = data.completed || 0;
+            } catch (error) {
+                console.error("Error fetching project metrics:", error);
+            }
+        }
 
-        <div class="leader-row">
-          ✉
-          <span>nkamble@forbesmarshall.com</span>
-        </div>
+        function navigateTo(module) {
+            alert("Navigating to the " + module + " module!");
+            // Ex: window.location.href = module + ".html";
+        }
 
-      </div>
-
-      <button class="login-btn">
-        LOGIN
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- MAIN -->
-
-  <main class="main-section">
-
-    <!-- SEARCH -->
-
-    <div class="search-wrapper">
-
-      <div class="search-box">
-
-        <input type="text" id="searchInput" placeholder="Search Project">
-
-        <button id="searchBtn">
-          Search
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- STATUS -->
-
-    <div class="status-container">
-
-      <div class="status-card">
-
-        <div class="status-left">
-          TOTAL PROJECTS
-        </div>
-
-        <div class="status-right" id="totalProjects">
-          0
-        </div>
-
-      </div>
-
-      <div class="status-card">
-
-        <div class="status-left">
-          ONGOING
-        </div>
-
-        <div class="status-right" id="ongoingProjects">
-          0
-        </div>
-
-      </div>
-
-      <div class="status-card">
-
-        <div class="status-left">
-          COMPLETED
-        </div>
-
-        <div class="status-right" id="completedProjects">
-          0
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- MODULES -->
-
-    <div class="module-container">
-
-      <!-- DESIGN -->
-
-      <div class="module-card design-card">
-
-        <div class="module-image">
-          📐
-        </div>
-
-        <div class="module-title">
-          DESIGNING
-        </div>
-
-        <div class="module-description">
-          Explore and manage design projects,
-          schematics, and visualizations.
-        </div>
-
-      </div>
-
-      <!-- AUTOMATION -->
-
-      <div class="module-card automation-card">
-
-        <div class="module-image">
-          🤖
-        </div>
-
-        <div class="module-title">
-          AUTOMATION
-        </div>
-
-        <div class="module-description">
-          Develop, monitor and configure automated
-          control systems and production logic.
-        </div>
-
-      </div>
-
-      <!-- MANUFACTURING -->
-
-      <div class="module-card manufacturing-card">
-
-        <div class="module-image">
-          ⚙️
-        </div>
-
-        <div class="module-title">
-          MANUFACTURING
-        </div>
-
-        <div class="module-description">
-          Plan production schedules, track fabrication
-          status and manage workflows.
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer class="footer">
-
-    © 2026 Forbes Marshall — All Rights Reserved <br>
-    Designed By Tool Room
-
-  </footer>
-
-  <script src="script.js"></script>
-
+        // Run on page load
+        window.onload = fetchDashboardStats;
+    </script>
 </body>
-
 </html>
