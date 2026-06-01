@@ -1,69 +1,30 @@
-// script.js
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  // DUMMY DATA
-
-  const totalProjects = 24;
-  const ongoingProjects = 8;
-  const completedProjects = 16;
-
-  // SET VALUES
-
-  document.getElementById("totalProjects").innerText = totalProjects;
-
-  document.getElementById("ongoingProjects").innerText = ongoingProjects;
-
-  document.getElementById("completedProjects").innerText = completedProjects;
-
-});
-
-
-// SEARCH BUTTON
-
-document.getElementById("searchBtn")
-.addEventListener("click", () => {
-
-  let searchText =
-    document.getElementById("searchInput").value;
-
-  if(searchText === ""){
-
-    alert("Please enter project name");
-
+function doGet(e) {
+  // Open your sheet by active context
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  
+  // Assuming Column 1 is ID, Column 2 is Name, Column 3 is Status ('Ongoing', 'Completed', etc.)
+  // Change column indices below according to your exact spreadsheet layout!
+  var totalProjects = data.length - 1; // Subtract 1 for the Header row
+  var ongoingCount = 0;
+  var completedCount = 0;
+  
+  for (var i = 1; i < data.length; i++) {
+    var status = data[i][2]; // 2 means Column C (0-indexed: A=0, B=1, C=2)
+    if (status === "Ongoing") {
+      ongoingCount++;
+    } else if (status === "Completed") {
+      completedCount++;
+    }
   }
-  else{
-
-    alert("Searching for : " + searchText);
-
-  }
-
-});
-
-
-// LOGIN BUTTON
-
-document.querySelector(".login-btn")
-.addEventListener("click", () => {
-
-  alert("Login System Coming Soon");
-
-});
-
-
-// MODULE CARDS
-
-const cards = document.querySelectorAll(".module-card");
-
-cards.forEach((card) => {
-
-  card.addEventListener("click", () => {
-
-    const title =
-      card.querySelector(".module-title").innerText;
-
-    alert(title + " Module Opening");
-
-  });
-
-});
+  
+  var result = {
+    total: totalProjects,
+    ongoing: ongoingCount,
+    completed: completedCount
+  };
+  
+  // Return stringified JSON with appropriate Content Service flags to bypass CORS barriers
+  return ContentService.createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
